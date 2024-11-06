@@ -575,6 +575,7 @@ def integ(s0,s,samples,mu_Ei,mu_Ef):
     """
     absorp=0
     mm=0.0
+    volume=0
     if type(samples)==dict:
         samples=[samples]
     for sample in samples:
@@ -587,6 +588,8 @@ def integ(s0,s,samples,mu_Ei,mu_Ef):
         x_bb=sample['box_bottom'][0];
         y_bb=sample['box_bottom'][1];
         z_bb=sample['box_bottom'][2];
+        M_smpl_n=0;
+        delta_V_smpl_n=8*dx*dy*dz/gridx/gridy/gridz;
         for p in range(gridx):
             xp=x_bb+(dx/gridx)+p*(2*dx/gridx)
             for q in range(gridy):
@@ -606,10 +609,13 @@ def integ(s0,s,samples,mu_Ei,mu_Ef):
                                 if outsid == 1:
                                     t_out = t_out + tt;
                         mm+=1
+                        M_smpl_n+=1
                         t0=t0+t0_out
                         t=t+t_out
-                        absorp=absorp + math.exp(-1.0*(mu_Ei*t0+mu_Ef*t))
-    return absorp/mm
+                        absorp=absorp + math.exp(-1.0*(mu_Ei*t0+mu_Ef*t))*delta_V_smpl_n
+        volume=volume + M_smpl_n*delta_V_smpl_n;
+
+    return absorp/volume
 
   
 

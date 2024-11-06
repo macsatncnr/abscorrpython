@@ -21,9 +21,9 @@ def three_samples():
 
     """
     
-    cubsmpl = abcr.smpl_trans(abcr.boxsample(2.0,2.0,2.0),[2.0,2.0,2.0])
-    sphsmpl = abcr.smpl_trans(abcr.sphere_sample(2.0),[-2.0,-2.0,-2.0])
-    cylsmpl = abcr.smpl_trans(abcr.cylinder_sample(1.5,1.5),[-2.0,2.0,0.0])
+    cubsmpl = abcr.smpl_trans(abcr.boxsample(1.0,1.0,1.0),[1.0,1.0,1.0])
+    sphsmpl = abcr.smpl_trans(abcr.sphere_sample(1.0),[-1.0,-1.0,-1.0])
+    cylsmpl = abcr.smpl_trans(abcr.cylinder_sample(1.0,1.5),[-1.5,1.5,0.0])
     samples=[cylsmpl, sphsmpl, cubsmpl]
     return samples
 
